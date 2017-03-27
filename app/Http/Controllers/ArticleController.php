@@ -9,7 +9,7 @@ class ArticleController extends Controller
     //
 
     public function table(){
-        return;
+        return "hello";
 
     }
 }
