@@ -24,6 +24,7 @@ class CategoryController extends Controller
         $category->TenKhongDau = changeTitle($request->input('name'));
 //        echo changeTitle($request->input('name'));
         $category->save();
+
         return redirect('admin/category/create')->with('notification','Thêm Thành Công');
     }
     public function  getupdate($id){
