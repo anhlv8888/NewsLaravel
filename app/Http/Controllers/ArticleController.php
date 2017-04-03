@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Theloai;
 use App\LoaiTin;
 use App\Tintuc;
+use App\Comment;
 use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
@@ -34,6 +35,7 @@ class ArticleController extends Controller
         $article->NoiDung = $request->input("content");
         $article->SoLuotXem = 0;
         $article->NoiBat = $request->input("important");
+//        dd($request->file('image'));
         if ($request->hasFile('image')){
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();
