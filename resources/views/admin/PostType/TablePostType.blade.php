@@ -58,7 +58,7 @@
                             <div class="col-md-6">
                                 <div class="btn-group">
 
-                                  <a href="create"  class="btn green">
+                                  <a href="admin/posttype/create"  class="btn green">
                                         Add New <i class="fa fa-plus"></i></a>
 
                                 </div>
@@ -122,8 +122,8 @@
                                     <td>{{$value->Ten}}</td>
                                     <td>{{$value->TenKhongDau}}</td>
                                     <td>{{$value->TheLoai->Ten}}</td>
-                                    <td><a href="update/{{$value->id}}" class=""><i class="fa fa-pencil"/> Edit </a></td>
-                                    <td><a href="delete/{{$value->id}}" class=""><i class="fa fa-trash"/> Delete</a></td>
+                                    <td><a href="admin/posttype/update/{{$value->id}}" class=""><i class="fa fa-pencil"/> Edit </a></td>
+                                    <td><a href="admin/posttype/delete/{{$value->id}}" class=""><i class="fa fa-trash"/> Delete</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

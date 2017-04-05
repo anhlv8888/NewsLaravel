@@ -75,7 +75,7 @@
                             <div class="col-md-6">
                                 <div class="btn-group">
                                     {{--{{ route("category.create") }}--}}
-                                  <a href="create"  class="btn green">
+                                  <a href="admin/category/create"  class="btn green">
                                         Add New <i class="fa fa-plus"></i></a>
 
                                 </div>
@@ -135,8 +135,8 @@
                                    <td>{{$value->id}}</td>
                                     <td>{{$value->Ten}}</td>
                                     <td>{{$value->TenKhongDau}}</td>
-                                    <td><a href="update/{{$value->id}}" class=""><i class="fa fa-pencil"/> Edit </a></td>
-                                    <td><a href="delete/{{$value->id}}" class=""><i class="fa fa-trash"/> Delete</a></td>
+                                    <td><a href="admin/category/update/{{$value->id}}" class=""><i class="fa fa-pencil"/> Edit </a></td>
+                                    <td><a href="admin/category/delete/{{$value->id}}" class=""><i class="fa fa-trash"/> Delete</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

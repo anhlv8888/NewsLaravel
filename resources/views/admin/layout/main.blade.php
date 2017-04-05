@@ -51,6 +51,17 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('admin/assets/admin/layout4/css/custom.css') }} " rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
+	 {{--Setup Ckeditor and ckfinder--}}
+
+	<script src="{{ asset('admin/word/ckeditor/ckeditor.js') }} " type="text/javascript"></script>
+	<script src="{{ asset('admin/word/ckeditor/ckfinder.js') }} " type="text/javascript"></script>
+	<script type="text/javascript">
+		var baseURL = "{!! url('/') !!}";
+	</script>
+	<script src="{{ asset('admin/word/func_ckfinder.js') }} " type="text/javascript"></script>
+	{{--end Set up CKEDITOR--}}
+
+	{{--<base href="{{asset('')}}">--}}
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -526,12 +537,12 @@ License: You must have a valid license purchased only from themeforest(the above
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="ecommerce_index.html">
+							<a href="{{route("article.table")}}">
 							<i class="icon-folder"></i>
 							All Posts</a>
 						</li>
 						<li>
-							<a href="ecommerce_orders.html">
+							<a href="admin/article/create">
 							<i class="icon-plus"></i>
 							Add New</a>
 						</li>
@@ -643,6 +654,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('admin/assets/global/plugins/excanvas.min.js') }}"></script>
 <![endif]-->
 <script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }} " type="text/javascript"></script>
+{{--<script src="{{ asset('admin/assets/global/plugins/jquery1.min.js') }} " type="text/javascript"></script>--}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="{{ asset('admin/assets/global/plugins/jquery-migrate.min.js') }} " type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }} " type="text/javascript"></script>
@@ -653,7 +666,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('admin/assets/global/plugins/jquery.cokie.min.js') }} " type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('admin/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
 <script type="text/javascript" src="{{ asset('admin/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}"></script>
-<script src="{{ asset('admin/assets/global/plugins/ckeditor/ckeditor.js') }} " type="text/javascript"></script>
+{{--<script src="{{ asset('admin/assets/global/plugins/ckeditor/ckeditor.js') }} " type="text/javascript"></script>--}}
 <script src="{{ asset('admin/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js ') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/global/plugins/bootstrap-markdown/lib/markdown.js ') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/global/plugins/uniform/jquery.uniform.min.js') }} " type="text/javascript"></script>
@@ -690,6 +703,7 @@ jQuery(document).ready(function() {
  Tasks.initDashboardWidget(); // init tash dashboard widget
 });
 </script>
+@yield('script')
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
