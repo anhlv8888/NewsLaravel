@@ -28,15 +28,15 @@ class SlideController extends Controller
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
-                return redirect('admin/article/create')->with('error','Bạn chỉ được lấy đuôi jpg, png, jpeg');
+                return redirect('admin//create')->with('error','Bạn chỉ được lấy đuôi jpg, png, jpeg');
             }
             $name = $file->getClientOriginalName();
             $hinh = str_random(4)."_".$name;
 //            dd($hinh);
-            while (file_exists("upload/News".$hinh)){
+            while (file_exists("upload/slide".$hinh)){
                 $hinh = str_random(4)."_".$name;
             }
-            $file->move("upload/News",$hinh);
+            $file->move("upload/slide",$hinh);
             $slide->Hinh = $hinh;
         }
         else{
@@ -46,13 +46,50 @@ class SlideController extends Controller
         return redirect("admin/slide/create")->with('notification','Thêm Thành Công');
     }
     public function  getupdate($id){
+        $slide = Slide::find($id);
+//        dd($slide);
+        return view('admin.slide.EditSlide' , ['slide'=>$slide]);
 
     }
-    public  function postupdate(SlideRequest $request,$id){
+    public  function postupdate(Request $request,$id){
+        $slide = Slide::find($id);
+        $this->validate($request,[
+            'name' => 'required',
+            'content' => 'required',
+        ],[
+            'name.required' => 'Bạn chưa nhập tên ',
+            'content.required' => 'Bạn chưa nhập nội dung ',
+        ]);
+        $slide->Ten = $request->input('name');
+//        dd($request->input('name'));
+        $slide->NoiDung = $request->input('content');
+        $slide->link = $request->input('link');
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                return redirect('admin/slide/update/'.$id)->with('error','Bạn chỉ lấy đuôi jpg,png,jpeg');
+            }
+            $name = $file->getClientOriginalName();
+            $hinh = str_random(4)."_".$name;
+            while(file_exists("upload/slide".$hinh)){
+                $hinh = str_random(4)."_".$name;
+            }
+            $file->move("upload/slide/",$hinh);
+            if(file_exists("upload/slide/".$slide->Hinh)){
+                unlink("upload/slide/".$slide->Hinh);
+            }
+            $slide->Hinh = $hinh;
+        }
+        $slide->save();
+        return redirect('admin/slide/table');
+
 
 
     }
     public  function destroy($id){
-
+        $slide = Slide::find($id);
+        $slide->delete();
+        return redirect('admin/slide/table')->with('notification','Xoá thành công ');
     }
 }
