@@ -59,6 +59,14 @@ Route::group(['prefix'=>'admin'],function (){
         Route::post('update/{id}','SlideController@postupdate')->name('slide.update');
         Route::get('delete/{id}','SlideController@destroy');
     });
+    Route::group(['prefix'=>'user'],function (){
+        Route::get('table','UserController@table')->name('user.table');
+        Route::get('create','UserController@getcreate');
+        Route::post('create','UserController@postcreate')->name('user.create');
+        Route::get('update/{id}','UserController@getupdate');
+        Route::post('update/{id}','UserController@postupdate')->name('user.update');
+        Route::get('delete/{id}','UserController@destroy' );
+    });
     Route::group(['prefix'=>'ajax'],function (){
         Route::get('posttype/{idCategory}','AjaxController@getPostType')->name('ajax.posttype');
     });

@@ -6,7 +6,7 @@
             <div class="portlet box purple">
                 <div class="portlet-title" style="background-color: #3598dc">
                     <div class="caption">
-                        <i class="fa fa-gift"></i>Slide Create
+                        <i class="fa fa-gift"></i>User Create
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
@@ -21,9 +21,7 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    <form  action="{{ route('slide.create') }}" method="post" id="form_sample_1" class="form-horizontal"
-                           enctype="multipart/form-data"   >
-
+                    <form  action="{{ route('user.create') }}" method="post" id="form_sample_1" class="form-horizontal">
                         {{csrf_field()}}
                         <div class="form-body">
                             <div class="alert alert-danger display-hide">
@@ -33,56 +31,58 @@
                             @if(session('notification'))
                                 <div class="alert alert-success">
                                     <button class="close" data-close="alert"></button>
-                                    {{--Your form validation is successful!--}}
                                     {{session('notification')}}
                                 </div>
                             @endif
-                            @if(session('error'))
-                                <div class="alert alert-success">
-                                    <button class="close" data-close="alert"></button>
-                                    {{--Your form validation is successful!--}}
-                                    {{session('error')}}
-                                </div>
-                            @endif
                             <div class="form-group">
-                                <label class="control-label col-md-3">Name<span class="required">
+                                <label class="control-label col-md-3">Full Name<span class="required">
 										* </span>
                                 </label>
                                 <div class="col-md-4">
-                                    <input type="text" name="name" data-required="1" class="form-control" placeholder="Nhập Tiêu Đề " value="{!! old('name') !!}"/>
+                                    <input type="text" name="name" data-required="1" class="form-control" placeholder="Họ và Tên" value="{!! old('name') !!}"/>
                                     @if (asset($errors->first('name')))
                                         <p class="help-block">{!! $errors->first('name') !!}</p>
                                     @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">Content
-                                </label>
-                                <div class="col-md-7">
-                                    <textarea class="form-control" name="content" rows="15" value=""   data-error-container="#editor2_error">{!! old('content') !!}</textarea>
-                                    <script type="text/javascript">ckeditor("content")</script>
-                                    @if (asset($errors->first('content')))
-                                        <p class="help-block ">{!! $errors->first('content') !!}</p>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Link
+                                <label class="control-label col-md-3">Email
                                 </label>
                                 <div class="col-md-4">
-                                    <input type="text" name="link" data-required="1" class="form-control" placeholder="Nhập link " value="{!! old('link') !!}"/>
-                                    @if (asset($errors->first('name')))
-                                        <p class="help-block">{!! $errors->first('name') !!}</p>
+                                    <input type="email" name="email" data-required="1" class="form-control" placeholder="Email" value="{!! old('email') !!}"/>
+                                    @if (asset($errors->first('email')))
+                                        <p class="help-block">{!! $errors->first('email') !!}</p>
                                     @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile" class="col-md-3 control-label">Input Image</label>
-                                <div class="col-md-7">
-                                    <input type="file" id="exampleInputFile" name="image">
-                                    @if (asset($errors->first('image')))
-                                        <p class="help-block">{!! $errors->first('image') !!}</p>
+                                <label class="control-label col-md-3">PassWord
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="password" name="password" data-required="1" class="form-control" placeholder="Nhập mật khẩu"  value="{!! old('password') !!}"/>
+                                    @if (asset($errors->first('password')))
+                                        <p class="help-block">{!! $errors->first('password') !!}</p>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Confirm Password
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="password" name="passwordAgain" data-required="1" class="form-control" placeholder="Nhập lại mật khẩu" value="{!! old('passwordAgain') !!}"/>
+                                    @if (asset($errors->first('passwordAgain')))
+                                        <p class="help-block">{!! $errors->first('passwordAgain') !!}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Level
+                                </label>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="level">
+                                            <option value="0">Member</option>
+                                            <option value="1">Admin</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                             <div class="row">
                                 <div class="col-md-offset-3 col-md-9">
                                     <button type="submit" class="btn green">Thêm Mơi</button>
-                                    <a href="{{ route("slide.table") }}" class="btn default">Quay Lại</a>
+                                    <a href="{{ route("user.table") }}" class="btn default">Quay Lại</a>
                                 </div>
                             </div>
                         </div>

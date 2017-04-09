@@ -24,7 +24,7 @@ class SlideRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:slide,Ten',
             'content' => 'required',
             'image' => 'required',
         ];
@@ -33,6 +33,7 @@ class SlideRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn chưa nhập tên ',
+            'name.unique' => 'Trùng tên đã có ',
             'content.required' => 'Bạn chưa nhập nội dung ',
             'image.required' => 'Bạn chưa có hình ảnh ',
         ];

@@ -6,7 +6,7 @@
             <div class="portlet box purple">
                 <div class="portlet-title" style="background-color: #3598dc">
                     <div class="caption">
-                        <i class="fa fa-gift"></i>PostType Update
+                        <i class="fa fa-gift"></i>Slide Update
                     </div>
                     <div class="tools">
                         <a href="javascript:;" class="collapse">
@@ -21,39 +21,58 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    <form  action="{{route("posttype.update",$posttype->id)}}" method="POST" id="form_sample_1" class="form-horizontal">
+                    <form  action="{{ route('slide.update',$slide->id) }}" method="post" id="form_sample_1" class="form-horizontal"
+                           enctype="multipart/form-data"   >
 
                         {{csrf_field()}}
-                        <input type="hidden" name="id" data-required="1" class="form-control" value="{{$posttype->id}}"/>
                         <div class="form-body">
-
+                            <div class="alert alert-danger display-hide">
+                                <button class="close" data-close="alert"></button>
+                                You have some form errors. Please check below.
+                            </div>
+                            @if(session('error'))
+                                <div class="alert alert-success">
+                                    <button class="close" data-close="alert"></button>
+                                    {{--Your form validation is successful!--}}
+                                    {{session('error')}}
+                                </div>
+                            @endif
                             <div class="form-group">
-                                <label class="control-label col-md-3">Name <span class="required">
+                                <label class="control-label col-md-3">Name<span class="required">
 										* </span>
                                 </label>
                                 <div class="col-md-4">
-                                    <input type="text" name="name" data-required="1" class="form-control" value="{{$posttype->Ten}}"/>
+                                    <input type="text" name="name" data-required="1" class="form-control" placeholder="Nhập Tiêu Đề " value="{!! $slide->Ten !!}"/>
                                     @if (asset($errors->first('name')))
                                         <p class="help-block">{!! $errors->first('name') !!}</p>
                                     @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">Thể Loại
+                                <label class="control-label col-md-3">Content
+                                </label>
+                                <div class="col-md-7">
+                                    <textarea class="form-control" name="content" rows="15" value=""   data-error-container="#editor2_error">{!! $slide->NoiDung  !!}</textarea>
+                                    <script type="text/javascript">ckeditor("content")</script>
+                                    @if (asset($errors->first('content')))
+                                        <p class="help-block ">{!! $errors->first('content') !!}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Link
                                 </label>
                                 <div class="col-md-4">
-                                    <select class="form-control" name="category">
-                                        @foreach($category as $value )
-                                            <option
-                                                    @if($posttype->idTheLoai == $value->id)
-                                                        {{"selected"}}
-                                                    @endif
-                                                    value="{{$value->id}}">{{$value->Ten}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @if(asset($errors->first('category')))
-                                        <p  class="help-block">{!! $errors->first('category') !!}</p>
+                                    <input type="text" name="link" data-required="1" class="form-control" placeholder="Nhập link " value="{!! $slide->link !!}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile" class="col-md-3 control-label">Input Image</label>
+                                <div class="col-md-7">
+                                    <p><img src="{!! asset("upload/slide/$slide->Hinh") !!}" width="200px" alt=""></p>
+                                    <input type="file" id="exampleInputFile" name="image">
+                                    @if (asset($errors->first('image')))
+                                        <p class="help-block">{!! $errors->first('image') !!}</p>
                                     @endif
                                 </div>
                             </div>
@@ -61,9 +80,8 @@
                         <div class="form-actions">
                             <div class="row">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button type="submit" class="btn green">Sửa Đổi</button>
-                                    {{--<button type="reset" class="btn default">Hủy</button>--}}
-                                    <a href="{{route("posttype.table")}}" class="btn default">Quay Lại</a>
+                                    <button type="submit" class="btn green">Sửa </button>
+                                    <a href="{{ route("slide.table") }}" class="btn default">Quay Lại</a>
                                 </div>
                             </div>
                         </div>
