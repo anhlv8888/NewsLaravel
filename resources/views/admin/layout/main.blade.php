@@ -453,14 +453,18 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="dropdown dropdown-user dropdown-dark">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<span class="username username-hide-on-mobile">
-						Nick </span>
+							@if(isset($user_login))
+								{!! $user_login->name !!}
+								@endif
+						 </span>
 						<!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
 						<img alt="" class="img-circle" src="{{asset("admin/assets/admin/layout4/img/avatar9.jpg")}}"/>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
+							{{--@if(isset($user_login))--}}
 							<li>
 								<a href="extra_profile.html">
-								<i class="icon-user"></i> My Profile </a>
+								<i class="icon-user"></i>My Profile</a>
 							</li>
 							<li>
 								<a href="page_calendar.html">
@@ -485,9 +489,10 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="icon-lock"></i> Lock Screen </a>
 							</li>
 							<li>
-								<a href="login.html">
+								<a href="{!! url('admin/logout') !!}">
 								<i class="icon-key"></i> Log Out </a>
 							</li>
+								{{--@endif--}}
 						</ul>
 					</li>
 					<!-- END USER LOGIN DROPDOWN -->

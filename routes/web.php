@@ -14,14 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/demo',function (){
+Route::get('admin/login','UserController@getloginAdmin');
+Route::post('admin/login','UserController@postloginAdmin')->name('admin.login');
+Route::get('admin/logout','UserController@getlogout');
 
-    $theloai = Theloai::find(1);
-     foreach ( $theloai->loaitin as  $loaitin){
-         echo $loaitin->Ten . "<br>";
-     }
-
-});
 Route::group(['prefix'=>'admin'],function (){
     Route::group(['prefix'=>'category'],function (){
         Route::get('table','CategoryController@table')->name('category.table');
