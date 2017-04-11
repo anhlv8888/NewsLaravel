@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Http\Requests\UserRequest;
 
@@ -60,5 +61,31 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect('admin/user/table')->with('notification','Xóa thành công');
+    }
+    public  function getloginAdmin(){
+        return view('admin.user.login');
+    }
+    public function postloginAdmin(Request $request){
+        $this->validate($request,[
+            'email'=>'required',
+            'password'=>'required|min:3|max:23'
+        ],[
+            'email.required'=>'Please input email',
+            'password.required'=>'Please input password',
+            'password.min'=>'Password không được nhỏ hơn 3 và lớn hơn 23 ký tự',
+            'password.max'=>'Password không được nhỏ hơn 3 và lớn hơn 23 ký tự',
+
+        ]);
+        if (Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')])){
+            return redirect('admin/category/table');
+        }
+        else{
+            return redirect('admin/login')->with('notification','Đăng nhập không thành công');
+        }
+
+    }
+    public function getlogout(){
+        Auth::logout();
+        return redirect('admin/login');
     }
 }
