@@ -77,14 +77,14 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="form-group">
 
 			<label class="control-label visible-ie8 ">Email</label>
-			<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Input Email" name="email"/>
+			<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Input Email" name="email" value="{!! old('email') !!}"/>
 			@if (asset($errors->first('email')))
 				<p class="help-block">{!! $errors->first('email') !!}</p>
 			@endif
 		</div>
 		<div class="form-group">
 			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Input PassWord" name="password"/>
+			<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Input PassWord" name="password" />
 			@if (asset($errors->first('password')))
 				<p class="help-block">{!! $errors->first('password') !!}</p>
 			@endif

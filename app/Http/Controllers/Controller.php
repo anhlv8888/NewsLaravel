@@ -11,13 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    function __construct(){
+    public function __construct()
+    {
         $this->CheckLogin();
     }
     function CheckLogin(){
         if (Auth::check()){
-//            dd(Auth::check());
-            view()->share('user_login',Auth::user());
+            dd(Auth::check());
+            view()->share('userlogin',Auth::user());
+//            return view("admin.layout.main",['user_login'=>Auth::user()]);
         }
     }
 }
