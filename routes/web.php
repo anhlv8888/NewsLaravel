@@ -18,7 +18,7 @@ Route::get('admin/login','UserController@getloginAdmin');
 Route::post('admin/login','UserController@postloginAdmin')->name('admin.login');
 Route::get('admin/logout','UserController@getlogout');
 
-Route::group(['prefix'=>'admin'],function (){
+Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function (){
     Route::group(['prefix'=>'category'],function (){
         Route::get('table','CategoryController@table')->name('category.table');
         Route::get('create','CategoryController@getcreate');

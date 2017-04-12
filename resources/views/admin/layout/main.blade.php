@@ -662,7 +662,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('admin/assets/global/plugins/respond.min.js') }}"></script>
 <script src="{{ asset('admin/assets/global/plugins/excanvas.min.js') }}"></script>
 <![endif]-->
-<script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }} " type="text/javascript"></script>
+{{--<script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }} " type="text/javascript"></script>--}}
 {{--<script src="{{ asset('admin/assets/global/plugins/jquery1.min.js') }} " type="text/javascript"></script>--}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="{{ asset('admin/assets/global/plugins/jquery-migrate.min.js') }} " type="text/javascript"></script>

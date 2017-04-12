@@ -74,6 +74,13 @@ License: You must have a valid license purchased only from themeforest(the above
 				{{session('notification')}}
 			</div>
 		@endif
+		@if(session('error'))
+			<div class="alert alert-danger">
+				<button class="close" data-close="alert"></button>
+				{{--Your form validation is successful!--}}
+				{{session('error')}}
+			</div>
+		@endif
 		<div class="form-group">
 
 			<label class="control-label visible-ie8 ">Email</label>
