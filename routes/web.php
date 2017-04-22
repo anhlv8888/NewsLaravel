@@ -11,9 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PageController@home');
+/*
+  Category--Client
+*/
+Route::get('{idCate}/{category}/{idPt}/{posttype}.html','PageController@posttype');
+Route::get('/{idCate}/{category}.html','PageController@category');
+
+// End Category
 Route::get('admin/login','UserController@getloginAdmin');
 Route::post('admin/login','UserController@postloginAdmin')->name('admin.login');
 Route::get('admin/logout','UserController@getlogout');

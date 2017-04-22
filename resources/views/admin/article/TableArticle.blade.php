@@ -53,6 +53,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
             <div class="portlet box blue">
                 <div class="portlet-title">
                     <div class="caption">
@@ -75,7 +76,7 @@
                             <div class="col-md-6">
                                 <div class="btn-group">
                                     {{--{{ route("category.create") }}--}}
-                                  <a href="{!! url('/admin/article/create') !!}"  class="btn green">
+                                    <a href="{!! url('/admin/article/create') !!}"  class="btn green">
                                         Add New <i class="fa fa-plus"></i></a>
 
                                 </div>
@@ -122,29 +123,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($article as $value)
-
-                                <tr>
-                                   <td>{{$value->id}}</td>
-                                    <td>
-                                        <p>{{$value->TieuDe}}</p>
-                                        <img width="100px" src="{{asset("upload/News/$value->Hinh")}}" alt="">
-                                    </td>
-                                    <td>{!! $value->TomTat !!}</td>
-                                    <td>{{$value->LoaiTin->Ten}}</td>
-                                    <td>{{$value->LoaiTin->TheLoai->Ten}}</td>
-                                    <td>{{$value->SoLuotXem}}</td>
-                                    <td>
-                                        @if($value->NoiBat == 0){{'Không'}}
-                                        @else{{'Có'}}
-                                        @endif
-                                    </td>
-                                    <td><a href="{!! url("/admin/article/update") !!}/{{$value->id}}" class="">  Edit </a></td>
-                                    <td><a href="{!! url("/admin/article/delete") !!}/{{$value->id}}" class="">  Delete</a></td>
-                                </tr>
-                            @endforeach
+                        @foreach($article as $value)
+                            <tr>
+                                <td>{{$value->id}}</td>
+                                <td>
+                                    <p>{{$value->TieuDe}}</p>
+                                    <img width="100px" src="{{asset("upload/News/$value->Hinh")}}" alt="">
+                                </td>
+                                <td>{!! $value->TomTat !!}</td>
+                                <td>{{$value->LoaiTin->Ten}}</td>
+                                <td>{{$value->LoaiTin->TheLoai->Ten}}</td>
+                                <td>{{$value->SoLuotXem}}</td>
+                                <td>
+                                    @if($value->NoiBat == 0){{'Không'}}
+                                    @else{{'Có'}}
+                                    @endif
+                                </td>
+                                <td><a href="{!! url("/admin/article/update") !!}/{{$value->id}}" class="">  Edit </a></td>
+                                <td><a href="{!! url("/admin/article/delete") !!}/{{$value->id}}" class="">  Delete</a></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-9">
+                            {!! $article->render() !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

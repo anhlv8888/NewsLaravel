@@ -10,7 +10,7 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
     public  function table(){
-        $user = User::all();
+        $user = User::paginate(5);
         return  view("admin.user.TableUser", ['user'=>$user]);
     }
     public  function getcreate(){

@@ -11,7 +11,7 @@ class PostTypeController extends Controller
 {
 
     public  function table(){
-        $posttype = LoaiTin::all();
+        $posttype = LoaiTin::paginate(7);
     //    dd($posttype);
         return view('admin.posttype.TablePostType',['posttype'=>$posttype]);
 
@@ -23,7 +23,7 @@ class PostTypeController extends Controller
     }
     public  function postcreate(PostTypeRequest $request){
         $loaitin = new LoaiTin();
-        $loaitin->Ten = $request->input('name');
+        $loaitin->Ten = title_case($request->input('name'));
         $loaitin->idTheLoai = $request->input('category');
         $loaitin->TenKhongDau = changeTitle($request->input('name'));
         $loaitin->save();
@@ -36,8 +36,17 @@ class PostTypeController extends Controller
 
     }
     public  function postupdate(PostTypeRequest $request,$id){
+        $this->validate($request,[
+            'name' => 'required|min:3|max:100',
+            'category'=> 'required',
+        ],[
+            'name.required' => 'Bạn chưa nhập tên loại tin',
+            'name.min' => 'Tên loại tin phải có độ dài từ 3 cho đến 100 ký tự',
+            'name.max' => 'Tên  loại tin phải có độ dài từ 3 cho đến 100 ký tự',
+            'category.required'=>'Bạn chưa chọn thể loại'
+        ]);
         $loaitin = LoaiTin::find($id);
-        $loaitin->Ten = $request->input('name');
+        $loaitin->Ten = title_case($request->input('name'));
         $loaitin->idTheLoai = $request->input('category');
         $loaitin->TenKhongDau = changeTitle($request->input('name'));
         $loaitin->save();

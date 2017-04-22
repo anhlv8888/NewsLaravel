@@ -128,6 +128,11 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-9">
+                            {!! $posttype->render() !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

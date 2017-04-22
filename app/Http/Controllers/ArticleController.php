@@ -14,8 +14,9 @@ class ArticleController extends Controller
     //
     public  function table(){
 //        $article = Tintuc::all();
-//        dd($category);
-            $article = Tintuc::orderBy('id','DESC')->get();
+            $article = Tintuc::orderBy('id','DESC')->paginate(5);
+//        dd($article);
+//            $article = Tintuc::paginate(5);
         return view('admin.article.TableArticle',['article'=>$article]);
 
     }
@@ -101,7 +102,10 @@ class ArticleController extends Controller
                 $hinh = str_random(4)."_".$name;
             }
             $file->move("upload/News",$hinh);
-            unlink("upload/News/".$article->Hinh);
+            if(file_exists("upload/News/".$article->Hinh)){
+                unlink("upload/News/".$article->Hinh);
+            }
+
             $article->Hinh = $hinh;
         }
 
