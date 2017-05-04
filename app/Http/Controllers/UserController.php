@@ -80,7 +80,7 @@ class UserController extends Controller
             return redirect('admin/category/table');
         }
         else{
-            return redirect('admin/login')->with('notification','Mail or password ');
+            return redirect('admin/login')->with('notification','Mail or password Wrong !!! ');
         }
 
     }

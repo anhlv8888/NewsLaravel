@@ -10,16 +10,16 @@
                         <div class="news-title">
                             <div class="category-nav">
                                 <span>
-                                        <a title="" class="entry-crumb" itemprop="url" href="#">
-                                            <span class="title-nav" itemprop="title">
+                                        <a title="" class="entry-crumb" itemprop="url" href="{!! url("$cate1->id/$cate1->TenKhongDau.html") !!}">
+                                            <span class="title-nav title-first" itemprop="title">
                                                 {!! $cate1->Ten !!}
                                             </span>
                                         </a>
                                 </span>
                                 <i class="fa fa-angle-right"></i>
-                                @foreach($posttype1 as $value)
+                                @foreach($posttype2 as $value)
                                     <span>
-                                         <a title="" class="entry-crumb" itemprop="url" href="#">
+                                         <a title="" class="entry-crumb" itemprop="url" href="{!! url("$cate1->id/$cate1->TenKhongDau/$value->id/$value->TenKhongDau.html") !!}">
                                             <span class="title-nav" itemprop="title">
                                                 {!! $value->Ten !!}
                                             </span>
@@ -27,107 +27,140 @@
                                 </span>
                                     <i class="fa fa-angle-right i-category"></i>
                                 @endforeach
-                                {{--<span>--}}
-                                    {{--<a title="" class="entry-crumb" itemprop="url" href="#">--}}
-                                        {{--<span class="title-nav" itemprop="title">--}}
-                                        {{--The Thao--}}
-                                        {{--</span>--}}
-                                    {{--</a>--}}
-                                {{--</span>--}}
-                                        {{--<i class="fa fa-angle-right"></i>--}}
-                                {{--<span>--}}
-                                        {{--<a title="" class="entry-crumb" itemprop="url" href="#">--}}
-                                        {{--<span class="title-nav" itemprop="title">--}}
-                                        {{--Gioi Tre--}}
-                                        {{--</span>--}}
-                                    {{--</a>--}}
-                                {{--</span>--}}
-
                             </div>
-                            <h3><a href="#" style="color: #000;">{!! $cate1->Ten !!}</a></h3>
+                            @if(isset($postype1))
+
+                                <h3 style="color: #000;">
+                                        {!! $postype1->Ten !!}
+                                     </h3>
+                            @else
+                                <h3 style="color: #000;">
+                                        {!! $cate1->Ten !!}
+                                   </h3>
+                            @endif
                         </div>
                     </div>
                 </div>
 
             </div>
+            @if(isset($ptarticle))
+                <?php
 
-            <div class="row col-md-6">
-                <div class="col-md-12">
-                    {{--@foreach($category1 as $value)--}}
-                    <div class="news-block">
-                        <div class="news-media"><img class="img-fluid" src="client/img/media-6.jpg" alt="">
+                $tin1 = $ptarticle->shift();
+                ?>
+                <div class="row col-md-6">
+                    <div class="col-md-12">
+                        {{--@foreach($category1 as $value)--}}
+                        <div class="news-block">
+                            <div class="news-media"><img class="img-fluid" src="upload/News/{!! $tin1['Hinh'] !!}"
+                                                         alt="">
+                            </div>
+                            <div class="news-title">
+                                <h2 class=" title-large"><a href="{!! url("$tin1->id/$tin1->TieuDeKhongDau.htm") !!}">{!! $tin1['TieuDe'] !!}</a></h2>
+                            </div>
+                            <div class="news-des">{!! $tin1['TomTat'] !!}
+                            </div>
+                            <div class="time-text"><strong>2h ago</strong></div>
+                            <div></div>
                         </div>
-                        <div class="news-title">
-                            <h2 class=" title-large"><a href="#">Condimentum ultrices mi est a arcu at cum </a></h2>
-                        </div>
-                        <div class="news-des">Condimentum ultrices mi est a arcu at cum a elementum per cum
-                            turpis dui vulputate vestibulum in vehicula montes vel. Mauris nam suspendisse
-                            consectetur ...
-                        </div>
-                        <div class="time-text"><strong>2h ago</strong></div>
-                        <div></div>
+                        {{--@endforeach--}}
                     </div>
-                    {{--@endforeach--}}
                 </div>
-            </div>
-            <div class="row col-md-6">
-                @foreach($article->take(4) as $value)
-                    <div class="col-md-6">
-                        <div class="card"><img class="img-fluid"
-                                               src="{!! asset("upload/News/$value->Hinh") !!}"
-                                               alt="">
-                            <div class="card-block">
-                                <div class="news-title">
-                                    <h2 class=" title-small"><a href="#">{!! $value->TieuDe !!}</a>
-                                    </h2>
+                <div class="row col-md-6">
+                    @foreach($ptarticle as $value)
+                        <div class="col-md-6">
+                            <div class="card"><img class="img-fluid"
+                                                   src="{!! asset("upload/News/$value->Hinh") !!}"
+                                                   alt="">
+                                <div class="card-block">
+                                    <div class="news-title">
+                                        <h2 class=" title-small"><a href="#">{!! $value->TieuDe !!}</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text">
+                                        <small class="text-time"><em>3 mins ago</em></small>
+                                    </p>
                                 </div>
-                                <p class="card-text">
-                                    <small class="text-time"><em>3 mins ago</em></small>
-                                </p>
                             </div>
                         </div>
+                    @endforeach
+                </div>
+            @else
+                <?php
+
+                $tin2 = $ctarticle->shift();
+                ?>
+                <div class="row col-md-6">
+                    <div class="col-md-12">
+                        {{--@foreach($category1 as $value)--}}
+                        <div class="news-block">
+                            <div class="news-media"><img class="img-fluid" src="upload/News/{!! $tin2['Hinh'] !!}"
+                                                         alt="">
+                            </div>
+                            <div class="news-title">
+                                <h2 class=" title-large"><a href="{!! url("$tin2->id/$tin2->TieuDeKhongDau.htm") !!}">{!! $tin2['TieuDe'] !!}</a></h2>
+                            </div>
+                            <div class="news-des">{!! $tin2['TomTat'] !!}
+                            </div>
+                            <div class="time-text"><strong>2h ago</strong></div>
+                            <div></div>
+                        </div>
+                        {{--@endforeach--}}
                     </div>
-                @endforeach
-            </div>
+                </div>
+                <div class="row col-md-6">
+                    @foreach($ctarticle->take(4) as $value)
+                        <?php
+                            $cutTitle = cutword($value->TieuDe ,10);
+                        ?>
+                        <div class="col-md-6">
+                            <div class="card"><img class="img-fluid"
+                                                   src="{!! asset("upload/News/$value->Hinh") !!}"
+                                                   alt="">
+                                <div class="card-block">
+                                    <div class="news-title">
+                                        <h2 class=" title-small"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">{!! $cutTitle !!}</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text">
+                                        <small class="text-time"><em>3 mins ago</em></small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
         </div>
     </section>
     <section class="section-01">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12">
-                    <h3 class="heading-large">Xã Hội</h3>
+                    <h3 class="heading-large">{!! $cate1->Ten !!}</h3>
                     <div class="row">
-                        @foreach($category as $cate)
-                            @if($cate->Ten == "Xã Hội")
-                                <?php
-                                $data = $cate->tintuc->where('NoiBat', 1)->sortByDesc('created_at');
+                        @foreach($ctarticle as $value)
+                            <?php
+                            $tomtat = cutword($value->TomTat, 20);
 
-
-                                ?>
-                                @foreach($data as $value)
-                                    <?php
-                                    //                                        $tomtat = cutword($value['TomTat'], 100);
-                                    //                                    $tomtat = substr($value['TomTat'], 0, 110);
-                                    $tomtat = cutword($value['TomTat'], 20);
-
-                                    ?>
-                                    <div class="col-md-6">
-                                        <div class="card"><img class="img-fluid"
-                                                               src="upload/News/{!! $value['Hinh'] !!}" alt="">
-                                            <div class="card-block">
-                                                <div class="news-title"><a href="#">
-                                                        <h2 class=" title-small">{!! $value['TieuDe'] !!}</h2>
-                                                    </a></div>
-                                                <p class="card-text">{!! $tomtat !!}</p>
-                                                <p class="card-text">
-                                                    <small class="text-time"><em>3 mins ago</em></small>
-                                                </p>
-                                            </div>
-                                        </div>
+                            ?>
+                            <div class="col-md-6">
+                                <div class="card"><img class="img-fluid"
+                                                       src="upload/News/{!! $value->Hinh !!}" alt="">
+                                    <div class="card-block">
+                                        <div class="news-title"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">
+                                                <h2 class=" title-small">{!! $value->TieuDe !!}</h2>
+                                            </a></div>
+                                        <p class="card-text">{!! $tomtat!!}</p>
+                                        <p class="card-text">
+                                            <small class="text-time"><em>3 mins ago</em></small>
+                                        </p>
                                     </div>
-                                @endforeach
-                            @endif
+                                </div>
+                            </div>
                         @endforeach
+                        {{--{!! $ctarticle->link() !!}--}}
 
                     </div>
 
@@ -146,13 +179,13 @@
                         <div class="tab-pane active" id="home" role="tabpanel">
                             @foreach($article->take(5) as $value)
                                 <div class="media">
-                                    <a class="media-left" href="#">
+                                    <a class="media-left" href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">
                                         <img class="media-object" src="{!! asset("upload/News/$value->Hinh") !!}"
                                              alt="">
                                     </a>
                                     <div class="media-body">
                                         <div class="news-title">
-                                            <h2 class="title-small"><a href="#">{!! $value->TieuDe !!}</a></h2>
+                                            <h2 class="title-small"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">{!! $value->TieuDe !!}</a></h2>
                                         </div>
                                         <div class="news-auther"><span class="time">1h ago</span></div>
                                     </div>
@@ -162,13 +195,13 @@
                         <div class="tab-pane" id="profile" role="tabpanel">
                             @foreach($article1->take(5) as $value)
                                 <div class="media">
-                                    <a class="media-left" href="#">
+                                    <a class="media-left" href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">
                                         <img class="media-object" src="{!! asset("upload/News/$value->Hinh") !!}"
                                              alt="">
                                     </a>
                                     <div class="media-body">
                                         <div class="news-title">
-                                            <h2 class="title-small"><a href="#">{!! $value->TieuDe !!}</a></h2>
+                                            <h2 class="title-small"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">{!! $value->TieuDe !!}</a></h2>
                                         </div>
                                         <div class="news-auther"><span class="time">1h ago</span></div>
                                     </div>

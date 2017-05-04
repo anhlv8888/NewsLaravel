@@ -63,12 +63,17 @@ function stripUnicode($str)
     {
         $cut = "";
         $arr = explode(" ", str_replace(",", ", ", $str));
-        for ($i = 0; $i < $number; $i++) {
-            $cut .= $arr[$i] . " ";
-
-
+        if (count($arr) < 9){
+//            var_dump(count($arr));die;
+            $cut = $str;
+            return $cut;
+        }else {
+            for ($i = 0; $i < $number; $i++) {
+                $cut .= $arr[$i] . " ";
+            }
+            return $cut . "...";
         }
-        return $cut . "...";
+
 
     }
 

@@ -19,6 +19,16 @@ Route::get('{idCate}/{category}/{idPt}/{posttype}.html','PageController@posttype
 Route::get('/{idCate}/{category}.html','PageController@category');
 
 // End Category
+// article- detail
+Route::get('{idArt}/{article}.htm','PageController@article');
+//end article-detail
+// login client
+Route::get('loginClient','PageController@getloginClient');
+Route::post('loginClient','PageController@postloginClient')->name('client.login');
+Route::post('registerClient','PageController@postRegisterClient')->name('client.register');
+
+
+// End Login Client
 Route::get('admin/login','UserController@getloginAdmin');
 Route::post('admin/login','UserController@postloginAdmin')->name('admin.login');
 Route::get('admin/logout','UserController@getlogout');

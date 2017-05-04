@@ -22,7 +22,7 @@
                             </div>
                             <div class="card-block">
                                 <div class="news-title">
-                                    <h2 class=" title-small"><a href="#">{!! cutword($value->TieuDe,9 )!!}</a>
+                                    <h2 class=" title-small"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">{!! cutword($value->TieuDe,9 )!!}</a>
                                     </h2>
                                 </div>
                                 <p class="card-text">
@@ -96,8 +96,6 @@
                             @if($cate->Ten == "Xã Hội")
                                 <?php
                                 $data = $cate->tintuc->where('NoiBat', 1)->sortByDesc('created_at')->take(4);
-
-
                                 ?>
                                 @foreach($data as $value)
                                     <?php
@@ -110,7 +108,7 @@
                                         <div class="card"><img class="img-fluid"
                                                                src="upload/News/{!! $value['Hinh'] !!}" alt="">
                                             <div class="card-block">
-                                                <div class="news-title"><a href="#">
+                                                <div class="news-title"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">
                                                         <h2 class=" title-small">{!! $value['TieuDe'] !!}</h2>
                                                     </a></div>
                                                 <p class="card-text">{!! $tomtat !!}</p>
@@ -142,13 +140,13 @@
                         <div class="tab-pane active" id="home" role="tabpanel">
                             @foreach($article->take(3) as $value)
                                 <div class="media">
-                                    <a class="media-left" href="#">
+                                    <a class="media-left" href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">
                                         <img class="media-object" src="{!! asset("upload/News/$value->Hinh") !!}"
                                              alt="">
                                     </a>
                                     <div class="media-body">
                                         <div class="news-title">
-                                            <h2 class="title-small"><a href="#">{!! $value->TieuDe !!}</a></h2>
+                                            <h2 class="title-small"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">{!! $value->TieuDe !!}</a></h2>
                                         </div>
                                         <div class="news-auther"><span class="time">1h ago</span></div>
                                     </div>
@@ -158,13 +156,13 @@
                         <div class="tab-pane" id="profile" role="tabpanel">
                             @foreach($article1->take(3) as $value)
                                 <div class="media">
-                                    <a class="media-left" href="#">
+                                    <a class="media-left" href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">
                                         <img class="media-object" src="{!! asset("upload/News/$value->Hinh") !!}"
                                              alt="">
                                     </a>
                                     <div class="media-body">
                                         <div class="news-title">
-                                            <h2 class="title-small"><a href="#">{!! $value->TieuDe !!}</a></h2>
+                                            <h2 class="title-small"><a href="{!! url("$value->id/$value->TieuDeKhongDau.htm") !!}">{!! $value->TieuDe !!}</a></h2>
                                         </div>
                                         <div class="news-auther"><span class="time">1h ago</span></div>
                                     </div>
@@ -179,12 +177,12 @@
                                     ?>
                                     @foreach($data as $dt)
                                         <div class="media">
-                                            <a class="media-left" href="#">
+                                            <a class="media-left" href="{!! url("$dt->id/$dt->TieuDeKhongDau.htm") !!}">
                                                 <img class="media-object" src="upload/News/{!! $dt->Hinh !!}" alt="">
                                             </a>
                                             <div class="media-body">
                                                 <div class="news-title">
-                                                    <h2 class="title-small"><a href="#">{!! $dt['TieuDe'] !!}</a></h2>
+                                                    <h2 class="title-small"><a href="{!! url("$dt->id/$dt->TieuDeKhongDau.htm") !!}">{!! $dt['TieuDe'] !!}</a></h2>
                                                 </div>
                                                 <div class="news-auther"><span class="time">1h ago</span></div>
                                             </div>

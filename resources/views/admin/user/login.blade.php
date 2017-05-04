@@ -63,11 +63,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<form class="login-form" action="{{ route('admin.login') }}" method="post">
 		{{csrf_field()}}
 		<h3 class="form-title">Sign In</h3>
-		<div class="alert alert-danger display-hide">
-			<button class="close" data-close="alert"></button>
-			<span>
-			Enter any username and password. </span>
-		</div>
 		@if(session('notification'))
 			<div class="alert alert-danger">
 				<button class="close" data-close="alert"></button>
