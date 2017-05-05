@@ -465,8 +465,10 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li>
 								<a href="extra_profile.html">
 								<i class="icon-user"></i>
+
 									@if(isset($userlogin))
-										{!! $userlogin->name !!}
+
+										{{--{!! $userlogin->name !!}--}}
 									@endif
 								</a>
 							</li>

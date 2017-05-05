@@ -17,21 +17,26 @@ Route::get('/','PageController@home');
 */
 Route::get('{idCate}/{category}/{idPt}/{posttype}.html','PageController@posttype');
 Route::get('/{idCate}/{category}.html','PageController@category');
-
 // End Category
+
 // article- detail
 Route::get('{idArt}/{article}.htm','PageController@article');
+Route::post('comment/{idArt}','CommentController@postCommentArticle')->name('comment');
 //end article-detail
+
+
 // login client
 Route::get('loginClient','PageController@getloginClient');
+Route::get('logoutClient','PageController@getlogoutClient');
 Route::post('loginClient','PageController@postloginClient')->name('client.login');
 Route::post('registerClient','PageController@postRegisterClient')->name('client.register');
-
-
 // End Login Client
+
+// Login Admin
 Route::get('admin/login','UserController@getloginAdmin');
 Route::post('admin/login','UserController@postloginAdmin')->name('admin.login');
 Route::get('admin/logout','UserController@getlogout');
+// End Login Admin
 
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function (){
     Route::group(['prefix'=>'category'],function (){
@@ -82,3 +87,7 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function (){
         Route::get('posttype/{idCategory}','AjaxController@getPostType')->name('ajax.posttype');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

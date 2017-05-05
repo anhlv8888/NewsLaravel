@@ -26,8 +26,9 @@
                                 <div class="col-lg-8 col-md-12">
                                     <div class="widget-area no-padding blank">
                                         <div class="status-upload">
-                                            <form>
-                                                <textarea placeholder="What do you think this article?"></textarea>
+                                            <form action="{{ route('comment',$tintuc2->id) }}" method="post">
+                                                {{csrf_field()}}
+                                                <textarea name="content" placeholder="What do you think this article?"></textarea>
                                                 <a href="{!! url("loginClient") !!}" class="btn btn-info green">Login</a>
                                                 <button type="submit" class="btn btn-success green"><i
                                                             class="fa fa-comments"></i> Comment
@@ -40,7 +41,7 @@
                         </div>
                         <div class="row">
                             @foreach($tintuc2->comment as $value)
-                                <div class="col-lg-8 col-md-12 comment">
+                                <div class="col-lg-8 col-md-12 comment" style="margin-top: 5px;">
                                     <div class="col-sm-2">
                                         <div class="thumbnail">
                                             <img class="img-responsive user-photo" width="50px"
@@ -53,7 +54,7 @@
                                                 <strong>{!! $value->user->name !!}</strong>
                                                 <span class="text-muted">{!! $value->created_at !!}</span></div>
                                             <div class="panel-body">
-                                                abc
+                                                {{ $value->NoiDung }}
                                             </div>
                                         </div>
                                     </div>

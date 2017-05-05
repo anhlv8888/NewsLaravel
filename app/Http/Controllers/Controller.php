@@ -16,8 +16,9 @@ class Controller extends BaseController
         $this->CheckLogin();
     }
     function CheckLogin(){
+//        dd(Auth::check());
         if (Auth::check()){
-            dd(Auth::check());
+
             view()->share('userlogin',Auth::user());
 //            return view("admin.layout.main",['user_login'=>Auth::user()]);
         }

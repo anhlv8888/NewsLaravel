@@ -16,6 +16,7 @@ class AdminLoginMiddleware
      */
     public function handle($request, Closure $next)
     {
+//        dd(Auth::check());
         if (Auth::check()){
             $user = Auth::user();
             if ($user->level == 1){

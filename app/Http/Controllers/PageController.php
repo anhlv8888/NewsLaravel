@@ -7,9 +7,11 @@ use App\Theloai;
 use App\Slide;
 use App\Tintuc;
 use App\LoaiTin;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 class PageController extends Controller
 {
     public function __construct()
@@ -24,6 +26,11 @@ class PageController extends Controller
         view()->share('article',$article);
         view()->share('article1',$article1);
         view()->share('slide',$slide);
+        if (Auth::check()){
+
+                view()->share('loginUser',Auth::user());
+            }
+
     }
 
     public function home(){
@@ -70,11 +77,22 @@ class PageController extends Controller
         if (Auth::attempt(['name'=>$request->input('username'),'password'=>$request->input('password')])){
             return redirect('/');
         }else{
-            return redirect('loginClient')->with('notification','Username or Password Wrong !!!');
+            return redirect('loginClient')->with('notification','Username or Password Wrong !!!')->withInput();
         }
     }
-    public function postRegisterClient(){
-
+    public function postRegisterClient(UserRequest $request){
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->level =  0;
+        $user->save();
+        return redirect('loginClient')->with('notification1','Thêm mới thành công');
     }
+    public function getlogoutClient(){
+        Auth::logout();
+        return redirect('/');
+    }
+
 
 }

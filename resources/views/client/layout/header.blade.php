@@ -4,12 +4,12 @@
             <div class="col-lg-4 date-sec hidden-sm-down">
                 {{--<div id="Date"></div>--}}
                 <?php
-                    date_default_timezone_set("Asia/Ho_Chi_Minh");
-//                    if(date("l") == "Friday"){
-//                        echo "Thứ 6";
-//                    }
-                    echo date("l");
-                    echo  date(", d/m/Y") . "<br>";
+                date_default_timezone_set("Asia/Ho_Chi_Minh");
+                //                    if(date("l") == "Friday"){
+                //                        echo "Thứ 6";
+                //                    }
+                echo date("l");
+                echo date(", d/m/Y") . "<br>";
                 ?>
             </div>
             <div class="col-lg-3 offset-lg-5">
@@ -35,10 +35,27 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-5 offset-lg-3 admin-bar hidden-sm-down">
-                    <nav class="nav nav-inline"><a href="#" class="nav-link"><span class="ping"></span><i
-                                    class="fa fa-envelope-o"></i></a> <a href="#" class="nav-link"><i
-                                    class="fa fa-bell-o"></i></a> <a href="#" class="nav-link">Lee Anh<img
-                                    class="img-fluid img-circle" src="client/img/admin-bg.jpg"></a></nav>
+                    <nav class="nav nav-inline">
+                        @if(Auth::guest())
+                        {{--@if(!session('userlogin'))--}}
+                            <a href="{{url('loginClient')}}" class="nav-link">
+                                Sign-in
+                                <i class="fa fa-sign-in"></i>
+
+                            </a>
+                        @else
+                            <a href="{{url('logoutClient')}}" class="nav-link">
+                                Sign-out
+                                <i class="fa fa-sign-out"></i>
+
+                            </a>
+                            <a href="#" class="nav-link"> {{Auth::user()->name}}
+                                <img class="img-fluid img-circle" src="client/img/admin-bg.jpg">
+                            </a>
+
+
+                        @endif
+                    </nav>
                 </div>
             </div>
         </div>
@@ -63,13 +80,16 @@
                     @if(count($value->loaitin) > 0)
                         <li class="nav-item dropdown">
 
-                            <a href="{!! url("$value->id/$value->TenKhongDau.html") !!}" class="nav-link">{!! $value->Ten !!}<b class="caret"></b></a>
+                            <a href="{!! url("$value->id/$value->TenKhongDau.html") !!}"
+                               class="nav-link">{!! $value->Ten !!}<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 @foreach($value->loaitin as $lt)
-                                <li> <a href="{!! url("$value->id/$value->TenKhongDau/$lt->id/$lt->TenKhongDau.html") !!}" style="text-decoration: none;">{!! $lt->Ten !!}
-                                    </a>
-                                </li>
-                                    @endforeach
+                                    <li>
+                                        <a href="{!! url("$value->id/$value->TenKhongDau/$lt->id/$lt->TenKhongDau.html") !!}"
+                                           style="text-decoration: none;">{!! $lt->Ten !!}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                     @endif

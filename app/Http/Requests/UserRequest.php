@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             'name.min'=>"Tên người dùng có ít nhất 3 ký tự",
             'email.required'=>'Bạn chưa nhập email',
             'email.email'=>'Bạn chưa nhập đúng định dang email',
-            'email.unique'=>'Tiêu đề đã tồn tại',
+            'email.unique'=>'Email đã tồn tại',
             'password.required'=>'bạn chưa nhập mật khẩu',
             'password.min'=>'Mật khẩu có ít nhất 3 kí tự và tối đa 23 kí tự',
             'password.max'=>'Mật khẩu có ít nhất 3 kí tự và tối đa 23 kí tự',
