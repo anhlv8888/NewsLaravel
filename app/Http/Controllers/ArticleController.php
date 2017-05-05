@@ -11,12 +11,9 @@ use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
-    //
+    //bla
     public  function table(){
-//        $article = Tintuc::all();
             $article = Tintuc::orderBy('id','DESC')->paginate(5);
-//        dd($article);
-//            $article = Tintuc::paginate(5);
         return view('admin.article.TableArticle',['article'=>$article]);
 
     }
