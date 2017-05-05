@@ -71,7 +71,8 @@
 										* </span>
                                 </label>
                                 <div class="col-md-4">
-                                    <input type="text" name="title" data-required="1" class="form-control" placeholder="Nhập Tiêu Đề " value="{!! old('title') !!}"/>
+                                    <textarea class="form-control" rows="6" name="title" value="">{!! old('title') !!}</textarea>
+                                    {{--<input type="text" name="title" data-required="1" class="form-control" placeholder="Nhập Tiêu Đề " value="{!! old('title') !!}"/>--}}
                                     @if (asset($errors->first('title')))
                                         <p class="help-block">{!! $errors->first('title') !!}</p>
                                     @endif
@@ -146,17 +147,19 @@
 
     {{--</script>--}}
     <script>
-        $( document ).ready(function() {
+
+        $(document).ready(function(){
             $("#category").change(function () {
                 var idCategory = $(this).val();
 //                alert(idCategory);
                 $.get("/admin/ajax/posttype/"+idCategory ,function(abc){
 //                    alert(abc);
+//                    debugger;
                     $("#posttype").html(abc);
                 });
-
-
-
+//
+//
+//
             });
         });
     </script>

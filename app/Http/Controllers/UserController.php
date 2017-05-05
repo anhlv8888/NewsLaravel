@@ -10,7 +10,7 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
     public  function table(){
-        $user = User::all();
+        $user = User::paginate(5);
         return  view("admin.user.TableUser", ['user'=>$user]);
     }
     public  function getcreate(){
@@ -80,7 +80,7 @@ class UserController extends Controller
             return redirect('admin/category/table');
         }
         else{
-            return redirect('admin/login')->with('notification','Đăng nhập không thành công');
+            return redirect('admin/login')->with('notification','Mail or password Wrong !!! ');
         }
 
     }

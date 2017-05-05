@@ -8,7 +8,7 @@ use App\Http\Requests\SlideRequest;
 class SlideController extends Controller
 {
     public  function table(){
-        $slide = Slide::all();
+        $slide = Slide::paginate(5);
 //        dd($slide);
         return view('admin.slide.TableSlide' , ['slide'=>$slide]);
 

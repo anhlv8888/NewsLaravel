@@ -76,7 +76,8 @@
 										* </span>
                                 </label>
                                 <div class="col-md-4">
-                                    <input type="text" name="title" data-required="1" class="form-control" placeholder="Nhập Tiêu Đề " value="{!! $article->TieuDe !!}"/>
+                                    <textarea class="form-control" rows="6" name="title" value="">{!! $article->TieuDe !!}</textarea>
+                                    {{--<input type="text" name="title" data-required="1" class="form-control" placeholder="Nhập Tiêu Đề " value="{!! $article->TieuDe !!}"/>--}}
                                     @if (asset($errors->first('title')))
                                         <p class="help-block">{!! $errors->first('title') !!}</p>
                                     @endif

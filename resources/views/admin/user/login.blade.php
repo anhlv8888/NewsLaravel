@@ -63,28 +63,30 @@ License: You must have a valid license purchased only from themeforest(the above
 	<form class="login-form" action="{{ route('admin.login') }}" method="post">
 		{{csrf_field()}}
 		<h3 class="form-title">Sign In</h3>
-		<div class="alert alert-danger display-hide">
-			<button class="close" data-close="alert"></button>
-			<span>
-			Enter any username and password. </span>
-		</div>
 		@if(session('notification'))
 			<div class="alert alert-danger">
 				<button class="close" data-close="alert"></button>
 				{{session('notification')}}
 			</div>
 		@endif
+		@if(session('error'))
+			<div class="alert alert-danger">
+				<button class="close" data-close="alert"></button>
+				{{--Your form validation is successful!--}}
+				{{session('error')}}
+			</div>
+		@endif
 		<div class="form-group">
 
 			<label class="control-label visible-ie8 ">Email</label>
-			<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Input Email" name="email"/>
+			<input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Input Email" name="email" value="{!! old('email') !!}"/>
 			@if (asset($errors->first('email')))
 				<p class="help-block">{!! $errors->first('email') !!}</p>
 			@endif
 		</div>
 		<div class="form-group">
 			<label class="control-label visible-ie8 visible-ie9">Password</label>
-			<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Input PassWord" name="password"/>
+			<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Input PassWord" name="password" />
 			@if (asset($errors->first('password')))
 				<p class="help-block">{!! $errors->first('password') !!}</p>
 			@endif

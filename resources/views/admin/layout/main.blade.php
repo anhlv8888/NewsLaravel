@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	 {{--Setup Ckeditor and ckfinder--}}
 
 	<script src="{{ asset('admin/word/ckeditor/ckeditor.js') }} " type="text/javascript"></script>
-	<script src="{{ asset('admin/word/ckeditor/ckfinder.js') }} " type="text/javascript"></script>
+	<script src="{{ asset('admin/word/ckfinder/ckfinder.js') }} " type="text/javascript"></script>
 	<script type="text/javascript">
 		var baseURL = "{!! url('/') !!}";
 	</script>
@@ -453,9 +453,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="dropdown dropdown-user dropdown-dark">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<span class="username username-hide-on-mobile">
-							@if(isset($user_login))
-								{!! $user_login->name !!}
-								@endif
+							@if(isset($userlogin))
+								{!! $userlogin->name !!}
+							@endif
 						 </span>
 						<!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
 						<img alt="" class="img-circle" src="{{asset("admin/assets/admin/layout4/img/avatar9.jpg")}}"/>
@@ -464,7 +464,13 @@ License: You must have a valid license purchased only from themeforest(the above
 							{{--@if(isset($user_login))--}}
 							<li>
 								<a href="extra_profile.html">
-								<i class="icon-user"></i>My Profile</a>
+								<i class="icon-user"></i>
+
+									@if(isset($userlogin))
+
+										{{--{!! $userlogin->name !!}--}}
+									@endif
+								</a>
 							</li>
 							<li>
 								<a href="page_calendar.html">
@@ -547,7 +553,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							All Posts</a>
 						</li>
 						<li>
-							<a href="admin/article/create">
+							<a href="{!! url('admin/article/create') !!}">
 							<i class="icon-plus"></i>
 							Add New</a>
 						</li>
@@ -600,11 +606,11 @@ License: You must have a valid license purchased only from themeforest(the above
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="components_pickers.html">
+							<a href="{!! url('admin/user/table') !!}">
 							All Users</a>
 						</li>
 						<li>
-							<a href="components_context_menu.html">
+							<a href="{!! url('admin/user/create') !!}">
 							Add New</a>
 						</li>
 					</ul>
@@ -660,7 +666,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <![endif]-->
 <script src="{{ asset('admin/assets/global/plugins/jquery.min.js') }} " type="text/javascript"></script>
 {{--<script src="{{ asset('admin/assets/global/plugins/jquery1.min.js') }} " type="text/javascript"></script>--}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>--}}
 <script src="{{ asset('admin/assets/global/plugins/jquery-migrate.min.js') }} " type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="{{ asset('admin/assets/global/plugins/jquery-ui/jquery-ui.min.js') }} " type="text/javascript"></script>
@@ -704,7 +710,7 @@ jQuery(document).ready(function() {
    Layout.init(); // init layout
    Demo.init(); // init demo features
    QuickSidebar.init(); // init quick sidebar
-    Index.init(); // init index page
+//    Index.init(); // init index page
  Tasks.initDashboardWidget(); // init tash dashboard widget
 });
 </script>
