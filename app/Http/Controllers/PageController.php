@@ -74,7 +74,7 @@ class PageController extends Controller
             'password.max'=>'Password không được nhỏ hơn 3 và lớn hơn 23 ký tự',
 
         ]);
-        if (Auth::attempt(['name'=>$request->input('username'),'password'=>$request->input('password')])){
+        if (Auth::attempt(['username'=>$request->input('username'),'password'=>$request->input('password')])){
             return redirect('/');
         }else{
             return redirect('loginClient')->with('notification','Username or Password Wrong !!!')->withInput();
@@ -83,6 +83,7 @@ class PageController extends Controller
     public function postRegisterClient(UserRequest $request){
         $user = new User;
         $user->name = $request->input('name');
+        $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->level =  0;
@@ -93,6 +94,45 @@ class PageController extends Controller
         Auth::logout();
         return redirect('/');
     }
+    public function getUserClient($idUser){
+        $user  = User::find($idUser);
+        return view('client.pages.user',['user'=>$user]);
+    }
+    public function postUserClient($idUser,Request $request){
+        $this->validate($request,[
+            'name' => "required|min:3",
+            'email' => "required",
+        ],[
+            'name.required'=>'Bạn chưa nhập Họ Tên',
+            'email.required'=>'Bạn chưa nhập Email',
+            'name.min'=>'Họ tên có ít nhất 3 kí tự',
+        ]);
+        $user = User::find($idUser);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        if ($request->changePassword == "on"){
+            $this->validate($request,[
+                'password' => "required|min:3|max:32",
+                'passwordAgain' => "required|same:password",
+            ],[
+                'password.required'=>'bạn chưa nhập mật khẩu',
+                'password.min'=>'Mật khẩu có ít nhất 3 kí tự và tối đa 23 kí tự',
+                'password.max'=>'Mật khẩu có ít nhất 3 kí tự và tối đa 23 kí tự',
+                'passwordAgain.required'=>'Bạn nhưa nhập lại mật khẩu',
+                'passwordAgain.same'=>'Nhập khẩu nhập lại chưa khớp'
+            ]);
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->save();
+        return redirect("userClient/$idUser")->with('notification','Update successfully...');
 
+    }
+    public function postSearch(Request $request){
+        $keyword =  $request->input('search');
+        $result = Tintuc::where('TieuDe','like',"%$keyword%")->orWhere('NoiDung','like',"%$keyword%")
+            ->orWhere('TomTat','like',"%$keyword%")->take(20)->paginate(5);
+//        dd($article);
+        return view('client.pages.search',['result'=>$result,'keyword'=>$keyword]);
+    }
 
 }

@@ -20,6 +20,7 @@ class UserController extends Controller
     {
         $user = new User;
         $user->name = $request->input('name');
+        $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->level =  $request->input('level');
@@ -34,12 +35,15 @@ class UserController extends Controller
     public  function postupdate(Request $request,$id){
         $this->validate($request,[
             'name' => "required|min:3",
+            'email' => "required",
         ],[
             'name.required'=>'Bạn chưa nhập Họ Tên',
+            'email.required'=>'Bạn chưa nhập Email',
             'name.min'=>'Họ tên có ít nhất 3 kí tự',
         ]);
         $user = User::find($id);
         $user->name = $request->input('name');
+        $user->email = $request->input('email');
         $user->level =  $request->input('level');
         if ($request->changePassword == "on"){
             $this->validate($request,[

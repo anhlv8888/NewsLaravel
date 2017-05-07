@@ -46,6 +46,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-3">UserName<span class="required">
+										* </span>
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="text" name="username" data-required="1" class="form-control" placeholder="Tên Đăng Nhap" value="{!! old('username') !!}"/>
+                                    @if (asset($errors->first('username')))
+                                        <p class="help-block">{!! $errors->first('username') !!}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-3">Email
                                 </label>
                                 <div class="col-md-4">

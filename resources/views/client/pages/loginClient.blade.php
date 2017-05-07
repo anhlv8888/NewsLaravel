@@ -75,9 +75,15 @@
                                             </div>
                                         @endif
                                         <div class="form-group">
-                                            <input type="text" name="name" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                            <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Full Name" value="">
                                             @if(asset($errors->first('name')))
                                                 <p class="help-block">{{ $errors->first('name') }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                            @if(asset($errors->first('username')))
+                                                <p class="help-block">{{ $errors->first('username') }}</p>
                                             @endif
                                         </div>
                                         <div class="form-group">

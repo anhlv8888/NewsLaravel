@@ -98,7 +98,10 @@
                                 ID
                             </th>
                             <th>
-                                Name
+                                FullName
+                            </th>
+                            <th>
+                                UserName
                             </th>
                             <th>
                                 Email
@@ -120,6 +123,7 @@
                                 <tr>
                                    <td>{{$value->id}}</td>
                                     <td>{{$value->name}}</td>
+                                    <td>{{$value->username}}</td>
                                     <td>
                                         {{$value->email}}
                                     </td>

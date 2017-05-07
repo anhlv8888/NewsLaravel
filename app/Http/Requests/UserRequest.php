@@ -20,6 +20,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,username',
             'password'=> 'required|min:3|max:32',
             'passwordAgain'=>'required|same:password'
 
@@ -33,6 +34,8 @@ class UserRequest extends FormRequest
             'email.required'=>'Bạn chưa nhập email',
             'email.email'=>'Bạn chưa nhập đúng định dang email',
             'email.unique'=>'Email đã tồn tại',
+            'username.required'=>'Bạn chưa nhập username',
+            'username.unique'=>'username đã tồn tại',
             'password.required'=>'bạn chưa nhập mật khẩu',
             'password.min'=>'Mật khẩu có ít nhất 3 kí tự và tối đa 23 kí tự',
             'password.max'=>'Mật khẩu có ít nhất 3 kí tự và tối đa 23 kí tự',

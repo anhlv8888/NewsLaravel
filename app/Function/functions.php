@@ -77,6 +77,10 @@ function stripUnicode($str)
 
     }
 
+    function changeColor($str,$keyword){
+        return str_replace($keyword,"<span style='color:red'>$keyword</span>",$str);
+    }
+
 //echo stripUnicode('Hàm php chuyển chuỗi tiếng Việt có dấu ra tiếng Việt không dấu');
 
 //ket quả là: Ham php chuyen chuoi tieng Viet co dau ra tieng Viet khong dau

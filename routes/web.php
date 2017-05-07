@@ -30,7 +30,18 @@ Route::get('loginClient','PageController@getloginClient');
 Route::get('logoutClient','PageController@getlogoutClient');
 Route::post('loginClient','PageController@postloginClient')->name('client.login');
 Route::post('registerClient','PageController@postRegisterClient')->name('client.register');
-// End Login Client
+// End Login Client ...
+
+// Edit User Client
+Route::get('userClient/{idUser}','PageController@getUserClient');
+Route::post('userClient/{idUser}','PageController@postUserClient')->name('client.user');
+//End Edit user Client
+
+
+// Search infor Client
+Route::post('search','PageController@postSearch');
+//End Search
+
 
 // Login Admin
 Route::get('admin/login','UserController@getloginAdmin');

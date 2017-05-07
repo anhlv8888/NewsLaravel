@@ -5,9 +5,6 @@
                 {{--<div id="Date"></div>--}}
                 <?php
                 date_default_timezone_set("Asia/Ho_Chi_Minh");
-                //                    if(date("l") == "Friday"){
-                //                        echo "Thứ 6";
-                //                    }
                 echo date("l");
                 echo date(", d/m/Y") . "<br>";
                 ?>
@@ -49,7 +46,7 @@
                                 <i class="fa fa-sign-out"></i>
 
                             </a>
-                            <a href="#" class="nav-link"> {{Auth::user()->name}}
+                            <a href="{{url('userClient',Auth::user()->id)}}" class="nav-link"> {{Auth::user()->name}}
                                 <img class="img-fluid img-circle" src="client/img/admin-bg.jpg">
                             </a>
 
@@ -94,17 +91,11 @@
                         </li>
                     @endif
                 @endforeach
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Politics</a> </li>--}}
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Business</a> </li>--}}
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Science</a> </li>--}}
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Sports</a> </li>--}}
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Tech</a> </li>--}}
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Travel</a> </li>--}}
-                {{--<li class="nav-item"> <a class="nav-link" href="#">Health</a> </li>--}}
             </ul>
-            <form class="pull-xs-right">
+            <form class="pull-xs-right" action="{{url('search')}}" method="post">
+                {{csrf_field()}}
                 <div class="search">
-                    <input type="text" class="form-control" maxlength="64" placeholder="Search"/>
+                    <input type="text" name="search" class="form-control" maxlength="64" placeholder="Search"/>
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </div>
             </form>
